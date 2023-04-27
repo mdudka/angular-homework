@@ -1,0 +1,33 @@
+<mat-divider></mat-divider>
+<div class="actions-toolbar">
+  <div>
+    <button mat-button>Select all</button>
+    <button mat-button (click)="deleteUsers()">Delete</button>
+    <button class="sort-btn" mat-button [matMenuTriggerFor]="menu">
+      <span>Sorting order</span>
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+  </div>
+  <app-search (searchValueChanged)="onSearchValueEntered($event)"></app-search>
+</div>
+<mat-divider></mat-divider>
+
+<div class="gallery">
+  <div *ngFor="let user of users">
+    <div
+      *ngIf="
+        searchValue === '' ||
+        user.lastname.toLowerCase().includes(searchValue.toLowerCase()) ||
+        user.firstname.toLowerCase().includes(searchValue.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchValue.toLowerCase()) ||
+        user.phone.toLowerCase().includes(searchValue.toLowerCase())
+      "
+    >
+      <app-usercard [user]="user" (userSelected)="onUsersSelected($event)"></app-usercard>
+    </div>
+  </div>
+</div>

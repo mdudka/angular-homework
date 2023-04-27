@@ -1,0 +1,7 @@
+.example-card {
+  max-width: 250px;
+}
+
+.card-checkbox {
+  align-self: flex-end;
+}
