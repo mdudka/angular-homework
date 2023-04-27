@@ -1,5 +1,10 @@
 <mat-card class="example-card" *ngIf="user">
-  <mat-checkbox class="card-checkbox" [(ngModel)]="checked" (change)="onUserSelected()" ></mat-checkbox>
+  <mat-checkbox
+    class="card-checkbox"
+    [(ngModel)]="checked"
+    (change)="onUserSelected()"
+    color="primary"
+  ></mat-checkbox>
   <img mat-card-image src="https://loremflickr.com/240/320" alt="Mock image" />
   <mat-card-header>
     <mat-card-title>{{ user.firstname }} {{ user.lastname }}</mat-card-title>

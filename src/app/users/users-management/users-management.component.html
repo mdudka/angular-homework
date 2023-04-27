@@ -14,11 +14,11 @@
       <mat-icon>expand_more</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>A-Z</button>
-      <button mat-menu-item>Z-A</button>
+      <button (click)="sortUsers('ascending')" mat-menu-item>A-Z</button>
+      <button (click)="sortUsers('descending')" mat-menu-item>Z-A</button>
     </mat-menu>
   </div>
-  <app-search (searchValueChanged)="onSearchValueEntered($event)"></app-search>
+  <app-search [placeholder]="searchPlaceholder" (searchValueChanged)="onSearchValueEntered($event)"></app-search>
 </div>
 <mat-divider></mat-divider>
 

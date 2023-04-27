@@ -12,6 +12,7 @@ export class UsersManagementComponent {
   searchValue = '';
   selectedUsers: IUser[] = [];
   isAllSelected = false;
+  searchPlaceholder = 'Search users...';
 
   onSearchValueEntered(value: string) {
     this.searchValue = value;
@@ -29,7 +30,7 @@ export class UsersManagementComponent {
 
   selectAll() {
     this.isAllSelected = !this.isAllSelected;
-    this.selectedUsers = this.selectedUsers.length ? [] : [...this.users];
+    this.selectedUsers =  [...this.users];
   }
 
   deleteUsers() {
@@ -37,5 +38,14 @@ export class UsersManagementComponent {
       (user) => !this.selectedUsers.includes(user)
     );
     this.selectedUsers = [];
+  }
+
+  sortUsers(order: string) {
+    if (order === 'ascending') {
+      this.users.sort((a, b) => (a['firstname'] > b['firstname'] ? 1 : -1));
+    }
+    else if (order === 'descending') {
+      this.users.sort((a, b) => (a['firstname'] < b['firstname'] ? 1 : -1));
+    }
   }
 }

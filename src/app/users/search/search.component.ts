@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { IUser } from '../IUser';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -7,6 +6,7 @@ import { IUser } from '../IUser';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
+  @Input() placeholder?: string;
   enteredSearchValue = '';
 
   @Output()

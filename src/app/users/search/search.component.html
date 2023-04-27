@@ -1,3 +1,9 @@
 <div>
-  <input type="text" [(ngModel)]="enteredSearchValue" (input)="onSearchValueChanged()">
+  <input
+    class="input"
+    type="text"
+    [(ngModel)]="enteredSearchValue"
+    (input)="onSearchValueChanged()"
+    [placeholder]="placeholder"
+  />
 </div>
