@@ -11,21 +11,31 @@ export class UsersManagementComponent {
   users: IUser[] = mockUsers;
   searchValue = '';
   selectedUsers: IUser[] = [];
+  isAllSelected = false;
 
   onSearchValueEntered(value: string) {
     this.searchValue = value;
   }
 
   onUsersSelected(user: IUser) {
-    if (!this.selectedUsers.includes(user)){
+    if (!this.selectedUsers.includes(user)) {
       this.selectedUsers.push(user);
     } else {
-      this.selectedUsers = this.selectedUsers.filter(() => !this.selectedUsers.includes(user))
+      this.selectedUsers = this.selectedUsers.filter(
+        () => !this.selectedUsers.includes(user)
+      );
     }
   }
 
+  selectAll() {
+    this.isAllSelected = !this.isAllSelected;
+    this.selectedUsers = this.selectedUsers.length ? [] : [...this.users];
+  }
+
   deleteUsers() {
-    this.users = this.users.filter(user => !this.selectedUsers.includes(user));
+    this.users = this.users.filter(
+      (user) => !this.selectedUsers.includes(user)
+    );
     this.selectedUsers = [];
   }
 }

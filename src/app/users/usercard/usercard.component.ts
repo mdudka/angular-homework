@@ -1,15 +1,15 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { IUser } from "../IUser";
+import { IUser } from '../IUser';
 
 @Component({
   selector: 'app-usercard',
   templateUrl: './usercard.component.html',
-  styleUrls: ['./usercard.component.css']
+  styleUrls: ['./usercard.component.css'],
 })
 export class UsercardComponent {
   @Input() user?: IUser;
-  checked = false;
+  @Input() checked?: boolean;
 
   @Output()
   userSelected: EventEmitter<IUser> = new EventEmitter<IUser>();
