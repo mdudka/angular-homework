@@ -2,7 +2,7 @@
 <div class="actions-toolbar">
   <div>
     <button mat-button>Select all</button>
-    <button mat-button (click)="deleteUsers()">Delete</button>
+    <button [disabled]="!selectedUsers.length" mat-button (click)="deleteUsers()">Delete</button>
     <button class="sort-btn" mat-button [matMenuTriggerFor]="menu">
       <span>Sorting order</span>
       <mat-icon>expand_more</mat-icon>

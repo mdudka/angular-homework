@@ -26,5 +26,6 @@ export class UsersManagementComponent {
 
   deleteUsers() {
     this.users = this.users.filter(user => !this.selectedUsers.includes(user));
+    this.selectedUsers = [];
   }
 }
