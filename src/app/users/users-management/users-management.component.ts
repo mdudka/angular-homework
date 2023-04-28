@@ -24,7 +24,15 @@ export class UsersManagementComponent implements OnInit {
     this.usersService.getUsers()
       .subscribe(users => {
         this.users = users
-        console.log(this.users)
+      })
+  }
+
+  addUser(userData: IUser): void {
+    this.usersService
+      .addUser(userData)
+      .subscribe(user => {
+        console.log(user)
+        this.users.push(user)
       })
   }
 

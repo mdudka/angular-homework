@@ -26,7 +26,7 @@
 <mat-divider></mat-divider>
 
 <div class="container">
-  <app-add-user-form></app-add-user-form>
+  <app-add-user-form (addUserFormSubmit)="addUser($event)"></app-add-user-form>
   <div class="gallery">
     <div *ngFor="let user of users">
       <div

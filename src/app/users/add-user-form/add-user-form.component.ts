@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -17,10 +17,12 @@ export class AddUserFormComponent {
     phone: ['', Validators.pattern(/^[0-9]+$/)],
   });
 
-  // name: ['', Validators.minLength(2)],
-  // username: ['', Validators.minLength(2), Validators.maxLength(60)],
-  // email: ['', Validators.email],
-  // phone: ['', Validators.pattern(/^[0-9]+$/)],
+  @Output() addUserFormSubmit = new EventEmitter();
 
   constructor(private fb: FormBuilder) {}
+
+  onSubmit() {
+    this.addUserFormSubmit.emit(this.userForm.value);
+    this.userForm.reset();
+  }
 }
