@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+
 import {IUser} from "./IUser";
-import {mockUsers} from "./mock-users";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  usersUrl = 'https://jsonplaceholder.typicode.com/users';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getUsers(): IUser[] {
-    return mockUsers;
+  getUsers(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(this.usersUrl);
   }
 }

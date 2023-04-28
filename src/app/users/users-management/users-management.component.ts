@@ -9,10 +9,10 @@ import { UsersService } from '../users.service';
 })
 export class UsersManagementComponent implements OnInit {
   users: IUser[] = [];
-  searchValue = '';
   selectedUsers: IUser[] = [];
-  isAllSelected = false;
+  searchValue = '';
   searchPlaceholder = 'Search users...';
+  isAllSelected = false;
 
   constructor(private usersService: UsersService) {}
 
@@ -21,7 +21,11 @@ export class UsersManagementComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.users = this.usersService.getUsers();
+    this.usersService.getUsers()
+      .subscribe(users => {
+        this.users = users
+        console.log(this.users)
+      })
   }
 
   selectAll() {
@@ -38,9 +42,9 @@ export class UsersManagementComponent implements OnInit {
 
   sortUsers(order: string) {
     if (order === 'ascending') {
-      this.users.sort((a, b) => (a['firstname'] > b['firstname'] ? 1 : -1));
+      this.users.sort((a, b) => (a['name'] > b['name'] ? 1 : -1));
     } else if (order === 'descending') {
-      this.users.sort((a, b) => (a['firstname'] < b['firstname'] ? 1 : -1));
+      this.users.sort((a, b) => (a['name'] < b['name'] ? 1 : -1));
     }
   }
 

@@ -27,8 +27,8 @@
     <div
       *ngIf="
         searchValue === '' ||
-        user.lastname.toLowerCase().includes(searchValue.toLowerCase()) ||
-        user.firstname.toLowerCase().includes(searchValue.toLowerCase()) ||
+        user.username.toLowerCase().includes(searchValue.toLowerCase()) ||
+        user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
         user.email.toLowerCase().includes(searchValue.toLowerCase()) ||
         user.phone.toLowerCase().includes(searchValue.toLowerCase())
       "
