@@ -21,19 +21,16 @@ export class UsersManagementComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.usersService.getUsers()
-      .subscribe(users => {
-        this.users = users
-      })
+    this.usersService.getUsers().subscribe((users) => {
+      this.users = users;
+    });
   }
 
   addUser(userData: IUser): void {
-    this.usersService
-      .addUser(userData)
-      .subscribe(user => {
-        console.log(user)
-        this.users.push(user)
-      })
+    this.usersService.addUser(userData).subscribe((user) => {
+      console.log(user);
+      this.users.push(user);
+    });
   }
 
   selectAll() {
@@ -50,9 +47,13 @@ export class UsersManagementComponent implements OnInit {
 
   sortUsers(order: string) {
     if (order === 'ascending') {
-      this.users.sort((a, b) => (a['name'] > b['name'] ? 1 : -1));
+      this.users.sort((a, b) =>
+        a['name'].toLowerCase() > b['name'].toLowerCase() ? 1 : -1
+      );
     } else if (order === 'descending') {
-      this.users.sort((a, b) => (a['name'] < b['name'] ? 1 : -1));
+      this.users.sort((a, b) =>
+        a['name'].toLowerCase() < b['name'].toLowerCase() ? 1 : -1
+      );
     }
   }
 
