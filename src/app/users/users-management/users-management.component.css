@@ -7,6 +7,11 @@
   padding: 10px 50px;
 }
 
+.container{
+  display: flex;
+  padding: 1rem 3rem;
+}
+
 .gallery {
   display: flex;
   justify-content: center;

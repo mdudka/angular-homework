@@ -1,0 +1,21 @@
+<form class="form" [formGroup]="userForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" type="text" name="name" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" type="text" name="username" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" type="email" name="email" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Phone</mat-label>
+    <input matInput formControlName="phone" type="text" name="phone" />
+  </mat-form-field>
+  <button type="submit" class="submit-btn" mat-raised-button color="primary">
+    ADD USER
+  </button>
+</form>

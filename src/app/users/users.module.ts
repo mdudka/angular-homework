@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
@@ -16,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SearchComponent } from './search/search.component';
 import { UsersManagementComponent } from './users-management/users-management.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +24,13 @@ import { MatDividerModule } from '@angular/material/divider';
     UsercardComponent,
     SearchComponent,
     UsersManagementComponent,
+    AddUserFormComponent,
   ],
   exports: [ToolbarComponent, UsercardComponent, UsersManagementComponent],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatSelectModule,
     MatInputModule,

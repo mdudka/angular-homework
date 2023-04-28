@@ -18,26 +18,33 @@
       <button (click)="sortUsers('descending')" mat-menu-item>Z-A</button>
     </mat-menu>
   </div>
-  <app-search [placeholder]="searchPlaceholder" (searchValueChanged)="onSearchValueEntered($event)"></app-search>
+  <app-search
+    [placeholder]="searchPlaceholder"
+    (searchValueChanged)="onSearchValueEntered($event)"
+  ></app-search>
 </div>
 <mat-divider></mat-divider>
 
-<div class="gallery">
-  <div *ngFor="let user of users">
-    <div
-      *ngIf="
+<div class="container">
+  <app-add-user-form></app-add-user-form>
+  <div class="gallery">
+    <div *ngFor="let user of users">
+      <div
+        *ngIf="
         searchValue === '' ||
         user.username.toLowerCase().includes(searchValue.toLowerCase()) ||
         user.name.toLowerCase().includes(searchValue.toLowerCase()) ||
         user.email.toLowerCase().includes(searchValue.toLowerCase()) ||
         user.phone.toLowerCase().includes(searchValue.toLowerCase())
       "
-    >
-      <app-usercard
-        [user]="user"
-        (userSelected)="onUsersSelected($event)"
-        [checked]="isAllSelected"
-      ></app-usercard>
+      >
+        <app-usercard
+          [user]="user"
+          (userSelected)="onUsersSelected($event)"
+          [checked]="isAllSelected"
+        ></app-usercard>
+      </div>
     </div>
   </div>
 </div>
+
