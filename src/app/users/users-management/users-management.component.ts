@@ -42,6 +42,11 @@ export class UsersManagementComponent implements OnInit {
     this.users = this.users.filter(
       (user) => !this.selectedUsers.includes(user)
     );
+    for (const user of this.selectedUsers) {
+      this.usersService
+        .deleteUser(user.id)
+        .subscribe()
+    }
     this.selectedUsers = [];
   }
 
