@@ -49,10 +49,6 @@ export class UsersManagementComponent implements OnInit {
       });
   }
 
-  selectAll() {
-    this.isAllSelected = !this.isAllSelected;
-    this.selectedUsers = [...this.users];
-  }
 
   deleteUsers() {
     for (const user of this.selectedUsers) {
@@ -88,13 +84,23 @@ export class UsersManagementComponent implements OnInit {
     this.searchValue = value;
   }
 
-  onUsersSelected(user: IUser) {
-    if (!this.selectedUsers.includes(user)) {
-      this.selectedUsers.push(user);
+  onUsersSelected(selectedUser: IUser) {
+    const selectedUserIndex = this.selectedUsers.findIndex(
+      (user) => user.id === selectedUser.id
+    );
+    if (selectedUserIndex !== -1) {
+      this.selectedUsers.splice(selectedUserIndex, 1);
     } else {
-      this.selectedUsers = this.selectedUsers.filter(
-        () => !this.selectedUsers.includes(user)
-      );
+      this.selectedUsers.push(selectedUser);
+    }
+  }
+
+  selectAll() {
+    this.isAllSelected = !this.isAllSelected;
+    if (this.selectedUsers.length === this.users.length) {
+      this.selectedUsers = [];
+    } else {
+      this.selectedUsers = [...this.users];
     }
   }
 }
