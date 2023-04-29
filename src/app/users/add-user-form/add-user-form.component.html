@@ -15,7 +15,7 @@
     <mat-label>Phone</mat-label>
     <input matInput formControlName="phone" type="text" name="phone" />
   </mat-form-field>
-  <button type="submit" class="submit-btn" mat-raised-button color="primary">
+  <button type="submit" class="submit-btn" [disabled]="userForm.status  !== 'VALID'" mat-raised-button color="primary">
     ADD USER
   </button>
 </form>

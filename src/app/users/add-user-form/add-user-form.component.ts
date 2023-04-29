@@ -8,13 +8,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AddUserFormComponent {
   userForm: FormGroup = this.fb.group({
-    name: ['', Validators.minLength(2)],
-    username: [
-      '',
-      Validators.compose([Validators.minLength(2), Validators.maxLength(60)]),
-    ],
-    email: ['', Validators.email],
-    phone: ['', Validators.pattern(/^[0-9]+$/)],
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(60)]],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],
   });
 
   @Output() addUserFormSubmit = new EventEmitter();
@@ -22,7 +19,9 @@ export class AddUserFormComponent {
   constructor(private fb: FormBuilder) {}
 
   onSubmit() {
-    this.addUserFormSubmit.emit(this.userForm.value);
-    this.userForm.reset();
+    if (this.userForm.status === 'VALID') {
+      this.addUserFormSubmit.emit(this.userForm.value);
+      this.userForm.reset();
+    }
   }
 }

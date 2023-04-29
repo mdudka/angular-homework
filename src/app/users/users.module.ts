@@ -17,6 +17,7 @@ import { SearchComponent } from './search/search.component';
 import { UsersManagementComponent } from './users-management/users-management.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AddUserFormComponent } from './add-user-form/add-user-form.component';
     MatCardModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatSnackBarModule
   ],
 })
 export class UsersModule {}

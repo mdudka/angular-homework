@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { IUser } from '../IUser';
 import { UsersService } from '../users.service';
 
+import { tap } from 'rxjs/operators';
+import { catchError, of } from 'rxjs';
+
 @Component({
   selector: 'app-users-management',
   templateUrl: './users-management.component.html',
@@ -21,16 +24,29 @@ export class UsersManagementComponent implements OnInit {
   }
 
   getUsers(): void {
-    this.usersService.getUsers().subscribe((users) => {
-      this.users = users;
-    });
+    this.usersService
+      .getUsers()
+      .pipe(
+        catchError((err) => {
+          throw err;
+        })
+      )
+      .subscribe((users) => {
+        this.users = users;
+      });
   }
 
   addUser(userData: IUser): void {
-    this.usersService.addUser(userData).subscribe((user) => {
-      console.log(user);
-      this.users.push(user);
-    });
+    this.usersService
+      .addUser(userData)
+      .pipe(
+        catchError((err) => {
+          throw err;
+        })
+      )
+      .subscribe((user) => {
+        this.users.push(user);
+      });
   }
 
   selectAll() {
@@ -39,15 +55,21 @@ export class UsersManagementComponent implements OnInit {
   }
 
   deleteUsers() {
-    this.users = this.users.filter(
-      (user) => !this.selectedUsers.includes(user)
-    );
     for (const user of this.selectedUsers) {
       this.usersService
         .deleteUser(user.id)
-        .subscribe()
+        .pipe(
+          catchError((err) => {
+            throw err;
+          })
+        )
+        .subscribe(() => {
+          this.users = this.users.filter(
+            (user) => !this.selectedUsers.includes(user)
+          );
+          this.selectedUsers = [];
+        });
     }
-    this.selectedUsers = [];
   }
 
   sortUsers(order: string) {
